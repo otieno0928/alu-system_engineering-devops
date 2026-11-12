@@ -1,3 +1,5 @@
+# Configure SSH client to use private key ~/.ssh/school and refuse password authentication
+
 file_line { 'Turn off passwd auth':
   path   => '/etc/ssh/ssh_config',
   line   => '    PasswordAuthentication no',

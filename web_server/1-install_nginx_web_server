@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installs Nginx, configures port 80, and sets up root page
+# Installs Nginx on a web server and configures the root page
 apt-get update -y
 apt-get install nginx -y
 echo "Holberton School for the win!" > /var/www/html/index.html

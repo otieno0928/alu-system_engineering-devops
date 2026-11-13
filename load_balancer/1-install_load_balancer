@@ -6,7 +6,7 @@ apt-get install haproxy -y
 # Enable HAproxy init script execution
 sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
-# Configure haproxy.cfg
+# Configure haproxy.cfg with exact names web-01 and web-02
 cat << 'CONFIG' > /etc/haproxy/haproxy.cfg
 global
 log /dev/loglocal0
@@ -32,8 +32,8 @@ default_backend haproxy_backend
 
 backend haproxy_backend
 balance roundrobin
-server 7384-web-01 13.40.153.43:80 check
-server 7384-web-02 3.8.141.113:80 check
+server web-01 13.40.153.43:80 check
+server web-02 3.8.141.113:80 check
 CONFIG
 
 /etc/init.d/haproxy restart

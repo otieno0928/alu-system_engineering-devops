@@ -3,10 +3,8 @@
 apt-get update -y
 apt-get install haproxy -y
 
-# Enable HAproxy init script execution
 sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
-# Configure haproxy.cfg with exact backend names web-01 and web-02
 cat << 'CONFIG' > /etc/haproxy/haproxy.cfg
 global
 log /dev/loglocal0

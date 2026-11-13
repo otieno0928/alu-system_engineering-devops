@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2154
+# Configures Nginx to add a custom X-Served-By HTTP response header with the server hostname
+apt-get update -y
+apt-get install nginx -y
+
+python3 -c '
+with open("/etc/nginx/sites-available/default", "r") as f:
+    content = f.read()
+target = "server_name _;"
+replacement = "server_name _;\n\n\tadd_header X-Served-By \$hostname;"
+if target in content and "add_header X-Served-By" not in content:
+    content = content.replace(target, replacement, 1)
+with open("/etc/nginx/sites-available/default", "w") as f:
+    f.write(content)
+'
+
+/etc/init.d/nginx restart

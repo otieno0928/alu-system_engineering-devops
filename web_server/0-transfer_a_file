@@ -1,7 +1,3 @@
 #!/usr/bin/env bash
 # Transfers a file from a client to a server using scp
-if [ "$#" -lt 3 ]; then
-    echo "Usage: 0-transfer_a_file PATH_TO_FILE IP PATH_TO_REMOTE_SERVER PRIV_KEY"
-    exit 1
-fi
-scp -o StrictHostKeyChecking=no -i "$4" "$1" ubuntu@"$2":"$3"
+scp -o "StrictHostKeyChecking no" -i "$4" "$1" ubuntu@"$2":"$3"

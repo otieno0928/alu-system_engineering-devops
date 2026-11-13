@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configures a custom 404 error page containing "Ceci n'est pas une page"
+# Configures a custom 404 page returning HTTP 404 and "Ceci n'est pas une page"
 apt-get update -y
 apt-get install nginx -y
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html

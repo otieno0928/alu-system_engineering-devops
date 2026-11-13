@@ -33,7 +33,7 @@ default_backend haproxy_backend
 backend haproxy_backend
 balance roundrobin
 server 7384-web-01 13.40.153.43:80 check
-server 7384-web-02 54.89.38.100:80 check
+server 7384-web-02 3.8.141.113:80 check
 CONFIG
 
 /etc/init.d/haproxy restart

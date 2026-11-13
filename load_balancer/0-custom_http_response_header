@@ -6,16 +6,16 @@ apt-get install nginx -y
 
 python3 -c '
 with open("/etc/nginx/sites-available/default", "r") as f:
-    content = f.read()
+content = f.read()
 
 target = "server_name _;"
 header_line = "server_name _;\n\tadd_header X-Served-By $hostname;"
 
 if target in content and "add_header X-Served-By" not in content:
-    content = content.replace(target, header_line, 1)
+content = content.replace(target, header_line, 1)
 
 with open("/etc/nginx/sites-available/default", "w") as f:
-    f.write(content)
+f.write(content)
 '
 
 /etc/init.d/nginx restart

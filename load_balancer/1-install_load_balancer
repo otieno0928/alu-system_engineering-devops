@@ -21,19 +21,19 @@ logglobal
 modehttp
 optionhttplog
 optiondontlognull
-    timeout connect 5000
-    timeout client  50000
-    timeout server  50000
+timeout connect 5000
+timeout client  50000
+timeout server  50000
 
 frontend haproxy_frontend
-    bind *:80
-    mode http
-    default_backend haproxy_backend
+bind *:80
+mode http
+default_backend haproxy_backend
 
 backend haproxy_backend
-    balance roundrobin
-    server web-01 13.40.153.43:80 check
-    server web-02 3.8.141.113:80 check
+balance roundrobin
+server web-01 13.40.153.43:80 check
+server web-02 3.8.141.113:80 check
 CONFIG
 
 /etc/init.d/haproxy restart

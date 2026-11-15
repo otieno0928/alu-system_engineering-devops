@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# Fix Nginx port to 80 in default site configuration
+# Fix Nginx on port 80 without init service
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+nginx

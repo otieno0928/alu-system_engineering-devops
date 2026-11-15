@@ -1,6 +1,6 @@
-# Increase hard and soft file descriptor limits for the holberton user
+# Increase the file descriptor limit for the holberton user to prevent too many open files errors
 
 exec { 'change-os-configuration-for-holberton-user':
-  command => 'grep -q "holberton" /etc/security/limits.conf && sed -i "/holberton/s/4/4096/g" /etc/security/limits.conf || echo -e "holberton soft nofile 4096\nholberton hard nofile 4096" >> /etc/security/limits.conf',
+  command => 'sed -i "s/nofile 4/nofile 4096/g" /etc/security/limits.conf || true',
   path    => ['/bin', '/usr/bin'],
 }

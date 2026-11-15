@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Configure nginx user, port 8080, and run nginx binary directly
-sed -i '/^user /d' /etc/nginx/nginx.conf
-sed -i '1i user nginx;' /etc/nginx/nginx.conf
+# Configure Nginx user to nginx, port to 8080, make PID writable, and restart
+sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
+sed -i 's/#user   nobody;/user nginx;/g' /etc/nginx/nginx.conf
+sed -i 's|pid /run/nginx.pid;|pid /tmp/nginx.pid;|g' /etc/nginx/nginx.conf
 sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[::\]:80 default_server;/listen [::]:8080 default_server;/g' /etc/nginx/sites-enabled/default
-pkill -9 nginx || true
-nginx
+chown -R nginx:nginx /var/log/nginx /var/lib/nginx /etc/nginx
+service nginx restart

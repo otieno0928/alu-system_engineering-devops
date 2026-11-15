@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Configure Nginx user to nginx, port to 8080, and restart service
-sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
-sed -i 's/user root;/user nginx;/g' /etc/nginx/nginx.conf
+# Force nginx user directive at the top of nginx.conf and set port to 8080
+sed -i '/^user /d' /etc/nginx/nginx.conf
+sed -i '1i user nginx;' /etc/nginx/nginx.conf
 sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[::\]:80 default_server;/listen [::]:8080 default_server;/g' /etc/nginx/sites-enabled/default
 service nginx restart

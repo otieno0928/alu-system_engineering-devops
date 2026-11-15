@@ -1,6 +1,6 @@
-# Increase hard and soft file descriptor limits for the holberton user
+# Change OS configuration for holberton user to increase file descriptor limit
 
 exec { 'change-os-configuration-for-holberton-user':
-  command => 'echo "holberton soft nofile 4096" >> /etc/security/limits.conf && echo "holberton hard nofile 4096" >> /etc/security/limits.conf',
+  command => 'sed -i "s/4/4096/g" /etc/security/limits.conf',
   path    => ['/bin', '/usr/bin'],
 }
